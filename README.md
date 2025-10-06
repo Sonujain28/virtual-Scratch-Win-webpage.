@@ -14,6 +14,6 @@ One of the key features of this project is the QR code integration. Using Python
 The project is deployed on Netlify, which hosts the webpage online. Netlify ensures that the web application is accessible anywhere, without requiring users to download any files or run local servers.
 
 # Technologies Used:
- HTML, CSS, JavaScript : – For frontend development and interactive scratch card logic
+ HTML, CSS, JavaScript : – For frontend development and interactive scratch card logic.
  Python – For generating the QR code linking to the live webpage
  Netlify – For hosting the project online
