@@ -2,7 +2,7 @@
 Project Title:
 # Shree Om Mobile Repairing Center – Scratch & Win Web App
 
-Description:
+# Description:
 This project is an interactive “Scratch &amp; Win” web page developed for Shree Om Mobile Repairing Center, designed to engage customers and promote the shop’s services.It combines a responsive HTML/CSS front-end with JavaScript logic for the scratch card effect and prize generation.
 
 The home page showcases the shop’s branding, working hours, services (screen replacement, battery replacement, charging port repair, water damage treatment, IC-level work, accessories sales), and contact details with quick links for WhatsApp, Instagram, and Facebook.
