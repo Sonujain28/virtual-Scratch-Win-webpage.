@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shree Om Mobile Repairing center - Scratch & Win</title>
+  <script src="https://unpkg.com/lucide/dist/lucide.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom right, #c4b5fd, #ffffff, #fbcfe8);
+      min-height: 100vh;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .card {
+      max-width: 400px;
+      width: 100%;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      border: 1px solid #ddd;
+      margin-bottom: 1rem;
+    }
+    .card h1, .card h2, .card p {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem;
+      text-align: center; /* Center all service text */
+    }
+    .service-box {
+      padding: 2rem;
+      border-radius: 1rem;
+      background: #e0e7ff;
+      text-align: center;
+    }
+    .contact, .socials {
+      text-align: center;
+      margin: 1rem;
+    }
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: white;
+      text-decoration: none;
+      margin: 0.25rem;
+    }
+    .social-instagram { background: linear-gradient(to right, #ec4899, #8b5cf6); }
+    .social-facebook { background: #2563eb; }
+    .social-whatsapp { background: #16a34a; }
+    .scratch-card {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 2px solid black;
+    }
+    .scratch-card canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    .prize-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .prize-text {
+      background: rgba(0,0,0,0.4);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      background: #ec4899;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .scratched {
+      margin-top: 0.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+    /* Center all home page content */
+    #home-page {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" class="center">
+  <!-- Home Page -->
+  <div id="home-page">
+    <h1 style="color:#4f46e5;">Shree Om Mobile Repairing center📱</h1>
+    <p>Fast & reliable mobile repair & accessories.</p>
+    <p>Quality service, honest pricing, and quick turnaround – because your mobile deserves the best care!</p>
+    <p style="font-weight:bold;">Working Hours: 9:00 AM - 10:00 pm</p>
+
+    <h2 style="color:#6366f1;">Our Services</h2>
+    <div class="services">
+      <div class="service-box">Screen Replacement</div>
+      <div class="service-box" style="background:#f6c4e0;">Battery Replacement</div>
+      <div class="service-box">Charging Port Repair</div>
+      <div class="service-box" style="background:#f6c4e0;">Water Damage Treatment</div>
+      <div class="service-box">All ic level work </div>
+      <div class="service-box" style="background:#f6c4e0;">Accessories Sale</div>
+    </div>
+
+    <h2 style="color:#6366f1;">Contact Us</h2>
+    <div class="contact">
+      <p>Owner: Hitesh Landge</p>
+      <p>Phone: <a href="tel:8805673404">8805673404</a></p>
+      <p>Email: <a href="mailto:shreeommobile@gmail.com">shreeommobile@gmail.com</a></p>
+      <p>Address: Ashok Nagar, near bus stop ,satpur </p>
+    </div>
+
+    <div class="socials">
+      <a href="https://wa.me/918805673404" target="_blank" class="social-whatsapp">WhatsApp</a>
+      <a href="https://www.instagram.com/repairing_centre__28?igsh=MWhsdXExMG1jaDdkOQ==&utm_source=ig_contact_invite" target="_blank" class="social-instagram">Instagram</a>
+      <a href="https://www.facebook.com/hitesh.landge.96" target="_blank" class="social-facebook">Facebook</a>
+    </div>
+    
+    <button id="play-btn">🎯 Play Scratch & Win</button>
+  </div>
+   
+  <!-- Scratch Card Page -->
+  <div id="scratch-page" style="display:none; width:100%; max-width:400px;">
+    <div class="scratch-card">
+      <canvas id="scratch-canvas"></canvas>
+      <div id="prize-overlay" class="prize-overlay" style="display:none;">
+        <div class="prize-text" id="prize-text"></div>
+      </div>
+    </div>
+    <div class="scratched" id="scratch-percent">Scratched: 0%</div>
+  </div>
+</div>
+
+<script>
+  // Prize pool
+  const commonItems = [
+    { text: 'Mobile Stand', win: true, bg: 'images/mobile-stand.jpg' },
+    { text: 'Cable Protector', win: true, bg: 'images/cable-protector.jpg' },
+    { text: 'Earphones', win: true, bg: 'images/earphones.jpg' },
+    { text: 'Mobile Screen Guard', win: true, bg: 'images/screen-guard.jpg' },
+    { text: 'Mobile Skin', win: true, bg: 'images/mobile-skin.jpg' }
+  ];
+  const rareItems = [
+    { text: 'Earbuds', win: true, bg: 'images/earbuds.jpg' },
+    { text: 'Neckband', win: true, bg: 'images/neckband.jpg' }
+  ];
+  const GLOBAL_POOL = [];
+  for (let i = 0; i < 50; i++) {
+    const rand = Math.random();
+    if (rand < 0.5) GLOBAL_POOL.push({ text: 'Better luck next time 😔', win: false, bg: 'images/better-luck.jpg' });
+    else if (rand < 0.95) GLOBAL_POOL.push(commonItems[Math.floor(Math.random() * commonItems.length)]);
+    else GLOBAL_POOL.push(rareItems[Math.floor(Math.random() * rareItems.length)]);
+  }
+
+  function pickRandomPrize() {
+    return GLOBAL_POOL[Math.floor(Math.random() * GLOBAL_POOL.length)];
+  }
+
+  // Page elements
+  const homePage = document.getElementById('home-page');
+  const scratchPage = document.getElementById('scratch-page');
+  const playBtn = document.getElementById('play-btn');
+
+  const canvas = document.getElementById('scratch-canvas');
+  const ctx = canvas.getContext('2d');
+  const prizeOverlay = document.getElementById('prize-overlay');
+  const prizeText = document.getElementById('prize-text');
+  const scratchPercentEl = document.getElementById('scratch-percent');
+
+  let isScratching = false;
+  let prize = null;
+
+  playBtn.addEventListener('click', () => {
+    prize = pickRandomPrize();
+    homePage.style.display = 'none';
+    scratchPage.style.display = 'block';
+    prizeOverlay.style.display = 'none';
+    scratchPercentEl.textContent = 'Scratched: 0%';
+    initCanvas();
+  });
+
+  function initCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+    grad.addColorStop(0, '#cbd5e1');
+    grad.addColorStop(1, '#94a3b8');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  function eraseAt(x, y, r=25) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI*2);
+    ctx.fill();
+    ctx.closePath();
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  canvas.addEventListener('mousedown', () => { isScratching = true; });
+  canvas.addEventListener('mouseup', () => { isScratching = false; computeScratchPercent(); });
+  canvas.addEventListener('mouseleave', () => { isScratching = false; computeScratchPercent(); });
+  canvas.addEventListener('mousemove', (e) => {
+    if (!isScratching) return;
+    const rect = canvas.getBoundingClientRect();
+    eraseAt(e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  function computeScratchPercent() {
+    const imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    let cleared = 0;
+    for(let i=3; i<imgData.data.length; i+=4) {
+      if(imgData.data[i] === 0) cleared++;
+    }
+    const percent = Math.min(Math.round((cleared / (canvas.width * canvas.height)) * 100),100);
+    scratchPercentEl.textContent = `Scratched: ${percent}%`;
+    if(percent === 100){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      prizeOverlay.style.display = 'flex';
+      prizeOverlay.style.backgroundImage = `url(${prize.bg})`;
+      prizeText.textContent = prize.text;
+    }
+  }
+</script>
+
+</body>
+</html>
