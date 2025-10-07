@@ -18,4 +18,5 @@ The project is deployed on Netlify, which hosts the webpage online. Netlify ensu
  Python – For generating the QR code linking to the live webpage
  Netlify – For hosting the project online
 # Would you like to take a look at the project?
-open the file ""
+1.open the file "scratch_and_win_qr.png"
+2.scan the QR 
