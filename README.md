@@ -17,3 +17,4 @@ The project is deployed on Netlify, which hosts the webpage online. Netlify ensu
  HTML, CSS, JavaScript : – For frontend development and interactive scratch card logic.
  Python – For generating the QR code linking to the live webpage
  Netlify – For hosting the project online
+
