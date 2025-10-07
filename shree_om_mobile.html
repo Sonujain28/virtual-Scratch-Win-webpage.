@@ -40,7 +40,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
       margin: 1rem;
-      text-align: center; /* Center all service text */
+      text-align: center;
     }
     .service-box {
       padding: 2rem;
@@ -114,7 +114,6 @@
       font-size: 0.9rem;
       color: #4b5563;
     }
-    /* Center all home page content */
     #home-page {
       text-align: center;
     }
@@ -136,7 +135,7 @@
       <div class="service-box" style="background:#f6c4e0;">Battery Replacement</div>
       <div class="service-box">Charging Port Repair</div>
       <div class="service-box" style="background:#f6c4e0;">Water Damage Treatment</div>
-      <div class="service-box">All ic level work </div>
+      <div class="service-box">All ic level work</div>
       <div class="service-box" style="background:#f6c4e0;">Accessories Sale</div>
     </div>
 
@@ -145,7 +144,7 @@
       <p>Owner: Hitesh Landge</p>
       <p>Phone: <a href="tel:8805673404">8805673404</a></p>
       <p>Email: <a href="mailto:shreeommobile@gmail.com">shreeommobile@gmail.com</a></p>
-      <p>Address: Ashok Nagar, near bus stop ,satpur </p>
+      <p>Address: Ashok Nagar, near bus stop, Satpur</p>
     </div>
 
     <div class="socials">
@@ -170,7 +169,6 @@
 </div>
 
 <script>
-  // Prize pool
   const commonItems = [
     { text: 'Mobile Stand', win: true, bg: 'images/mobile-stand.jpg' },
     { text: 'Cable Protector', win: true, bg: 'images/cable-protector.jpg' },
@@ -194,7 +192,6 @@
     return GLOBAL_POOL[Math.floor(Math.random() * GLOBAL_POOL.length)];
   }
 
-  // Page elements
   const homePage = document.getElementById('home-page');
   const scratchPage = document.getElementById('scratch-page');
   const playBtn = document.getElementById('play-btn');
@@ -236,6 +233,7 @@
     ctx.globalCompositeOperation = 'source-over';
   }
 
+  // Mouse events
   canvas.addEventListener('mousedown', () => { isScratching = true; });
   canvas.addEventListener('mouseup', () => { isScratching = false; computeScratchPercent(); });
   canvas.addEventListener('mouseleave', () => { isScratching = false; computeScratchPercent(); });
@@ -243,6 +241,28 @@
     if (!isScratching) return;
     const rect = canvas.getBoundingClientRect();
     eraseAt(e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  // Touch events for mobile
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    isScratching = true;
+  });
+
+  canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    isScratching = false;
+    computeScratchPercent();
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (!isScratching) return;
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    eraseAt(x, y);
   });
 
   function computeScratchPercent() {
