@@ -20,3 +20,5 @@ The project is deployed on Netlify, which hosts the webpage online. Netlify ensu
 # Would you like to take a look at the project?
 1.open the file "scratch_and_win_qr.png"
 2.scan the QR 
+3.scroll down the page "click on play & win "
+4.Scratch the Card
