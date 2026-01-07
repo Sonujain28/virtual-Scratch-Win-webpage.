@@ -1,8 +1,7 @@
 import qrcode
 
 # Step 1: Add your website URL (Netlify URL)
-url = "https://virtualscratchwinwebpage.netlify.app/shree_om_mobile.html"
-
+url = "https://virtualscratchwinwebpage.netlify.app"
 # Step 2: Generate QR code
 qr = qrcode.QRCode(
     version=1, 
@@ -19,3 +18,4 @@ img = qr.make_image(fill_color="black", back_color="white")
 img.save("scratch_and_win_qr.png")
 
 print("QR code generated and saved as scratch_and_win_qr.png")
+
