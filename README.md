@@ -1,6 +1,6 @@
 # virtual-Scratch-Win-webpage.
 Project Title:
-# Shree Om Mobile Repairing Center – Scratch & Win Web page
+#  Scratch & Win Web page
 
 # Description:
 This project is an interactive “Scratch &amp; Win” web page developed for Shree Om Mobile Repairing Center, designed to engage customers and promote the shop’s services.It combines a responsive HTML/CSS front-end with JavaScript logic for the scratch card effect and prize generation.
