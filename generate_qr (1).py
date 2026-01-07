@@ -19,3 +19,4 @@ img.save("scratch_and_win_qr.png")
 
 print("QR code generated and saved as scratch_and_win_qr.png")
 
+
